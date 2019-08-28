@@ -1,6 +1,9 @@
+import Printer from "./printer";
+
 export default class HistoryHandler {
-  constructor() {
+  constructor(printer = new Printer()) {
     this.history = [];
+    this.printer = printer;
   }
 
   logHistory(amount, date, debit, balance) {
@@ -13,36 +16,6 @@ export default class HistoryHandler {
   }
 
   print() {
-    return this.printHeaders() + this.printEntries();
-  }
-
-  printHeaders() {
-    return "date || credit || debit || balance\n";
-  }
-
-  printEntries() {
-    return this.history
-      .reverse()
-      .map(entry => this.printEntry(entry))
-      .join("\n");
-  }
-
-  printEntry(entry) {
-    return `${this.parseDate(entry.date)} || ${this.calculateCredit(
-      entry
-    )} || ${this.calculateDebit(entry)} || ${entry.balance}`;
-  }
-
-  parseDate(date) {
-    let moment = require("moment");
-    return moment(date).format("DD/MM/YYYY");
-  }
-
-  calculateDebit(entry) {
-    return entry.debit ? `${entry.amount}` : "";
-  }
-
-  calculateCredit(entry) {
-    return entry.debit ? "" : `${entry.amount}`;
+    return this.printer.print(this.history);
   }
 }
