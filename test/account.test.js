@@ -1,4 +1,4 @@
-import Account from "./account";
+import Account from "../lib/account";
 
 it("starts with a balance of 0", () => {
   const account = new Account();

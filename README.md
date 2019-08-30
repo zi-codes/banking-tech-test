@@ -15,7 +15,7 @@ Makers example tech test written in JS and test-driven with Jest. No database al
 
 Requires npm / yarn installed
 
-#### MacOS
+#### MacOSa
 
 ```sh
 $ git clone https://github.com/zi-codes/banking-tech-test
